@@ -1,0 +1,5 @@
+com/example/server/Book.class
+com/example/server/BookRepository.class
+com/example/server/ServerApplication.class
+com/example/server/BookController.class
+com/example/server/BookService.class
