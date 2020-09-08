@@ -3,6 +3,7 @@ services:
     - docker
 language: java
 install: true
+script: mvn clean package -DskipTests=true
 deploy:
     provider: elasticbeanstalk
     region: "ap-south-1"
