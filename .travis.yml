@@ -1,13 +1,18 @@
 sudo: required
 services:
     - docker
+language: java
 install: true
 script: mvn clean package -DskipTests=true
-after_success:
-    - docker build -t tejozarkar/spring-server .
-
-    # Login to docker
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-
-    #Push images to docker hub
-    - docker push tejozarkar/spring-server
+deploy:
+    provider: elasticbeanstalk
+    region: "ap-south-1"
+    app: "backend"
+    env: "Backend-env"
+    bucket_name: "elasticbeanstalk-ap-south-1-509006680370"
+    bucket_path: "backend"
+    edge: true
+    on:
+        branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
